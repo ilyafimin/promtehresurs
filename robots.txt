@@ -1,0 +1,15 @@
+# Robots.txt for promtechresurs.ru
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://promtechresurs.ru/sitemap.xml
+
+# Disallow admin/private pages
+Disallow: /privacy
+Disallow: /terms
+Disallow: /offer
+Disallow: /cookie-notice
+
+# Host
+Host: https://promtechresurs.ru
