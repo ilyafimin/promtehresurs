@@ -31,11 +31,6 @@ app.get('/terms-of-service', (req, res) => {
   res.sendFile(path.join(__dirname, 'terms-of-service.html'));
 });
 
-// Обработка 404 ошибки
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'index.html'));
-});
-
 // Функция отправки сообщения в Telegram
 function sendToTelegram(message) {
   return new Promise((resolve, reject) => {
@@ -106,6 +101,11 @@ app.post('/api/send-order', async (req, res) => {
     console.error('Ошибка отправки в Telegram:', error);
     res.status(500).json({ success: false, message: 'Ошибка отправки заявки' });
   }
+});
+
+// Обработка 404 ошибки
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Запуск сервера
