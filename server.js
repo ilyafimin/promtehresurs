@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const https = require('https');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,13 +36,13 @@ app.get('/terms-of-service', (req, res) => {
 function sendToTelegram(message) {
   return new Promise((resolve, reject) => {
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    
+
     const postData = JSON.stringify({
       chat_id: TELEGRAM_CHAT_ID,
       text: message,
       parse_mode: 'HTML'
     });
-    
+
     const options = {
       hostname: 'api.telegram.org',
       path: `/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
@@ -51,7 +52,7 @@ function sendToTelegram(message) {
         'Content-Length': Buffer.byteLength(postData)
       }
     };
-    
+
     const req = https.request(options, (res) => {
       let data = '';
       res.on('data', (chunk) => data += chunk);
@@ -68,7 +69,7 @@ function sendToTelegram(message) {
         }
       });
     });
-    
+
     req.on('error', reject);
     req.write(postData);
     req.end();
@@ -79,26 +80,26 @@ function sendToTelegram(message) {
 app.post('/api/send-order', async (req, res) => {
   try {
     const { name, company, phone, email, message } = req.body;
-    
+
     // Валидация
     if (!name || !phone) {
       return res.status(400).json({ success: false, message: 'Имя и телефон обязательны' });
     }
-    
-    // Формирование сообщения для Telegram
-    const telegramMessage = `<b>📩 Новая заявка с сайта</b>
 
-<b>👤 Имя:</b> ${name}
-<b>🏢 Организация:</b> ${company || 'Не указана'}
-<b>📞 Телефон:</b> ${phone}
-<b>📧 Email:</b> ${email || 'Не указан'}
-<b>💬 Сообщение:</b> ${message || 'Нет'}`;
-    
+    // Формирование сообщения для Telegram
+    const telegramMessage = `
+      📩 Новая заявка с сайта
+      <b>👤 Имя:</b> ${name}
+      <b>🏢 Организация:</b> ${company || 'Не указана'}
+      <b>📞 Телефон:</b> ${phone}
+      <b>📧 Email:</b> ${email || 'Не указан'}
+      <b>💬 Сообщение:</b> ${message || 'Нет'}
+    `;
+
     await sendToTelegram(telegramMessage);
-    
+
     res.json({ success: true, message: 'Заявка успешно отправлена' });
   } catch (error) {
-    console.error('Ошибка отправки в Telegram:', error);
     res.status(500).json({ success: false, message: 'Ошибка отправки заявки' });
   }
 });
