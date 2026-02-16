@@ -121,7 +121,7 @@ function acceptCookies() {
     const form = document.getElementById('contactForm');
     
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
@@ -136,13 +136,36 @@ function acceptCookies() {
                 return;
             }
             
-            // Log form data (replace with actual API call)
-            console.log('Form submitted:', data);
+            // Get submit button
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
             
-            // Show success message
-            showNotification('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.', 'success');
-            
-            this.reset();
+            try {
+                const response = await fetch('/api/send-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.', 'success');
+                    this.reset();
+                } else {
+                    showNotification(result.message || 'Ошибка отправки. Попробуйте позже.', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Ошибка отправки. Попробуйте позже.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            }
         });
     }
 })();
