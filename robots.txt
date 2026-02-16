@@ -1,9 +1,9 @@
-# Robots.txt for promtechresurs.ru
+# Robots.txt for промтехресурс-сплавы.рф
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://promtechresurs.ru/sitemap.xml
+Sitemap: https://промтехресурс-сплавы.рф/sitemap.xml
 
 # Disallow admin/private pages
 Disallow: /privacy
@@ -12,4 +12,4 @@ Disallow: /offer
 Disallow: /cookie-notice
 
 # Host
-Host: https://promtechresurs.ru
+Host: https://промтехресурс-сплавы.рф
