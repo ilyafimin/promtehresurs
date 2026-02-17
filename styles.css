@@ -1311,6 +1311,199 @@ img {
     }
 }
 
+/* Mobile phones 360px (360×800) */
+@media (max-width: 380px) {
+    :root {
+        --section-padding: 50px;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 14px;
+    }
+    
+    /* Header */
+    .header {
+        padding: 12px 0;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .logo-name {
+        font-size: 16px;
+    }
+    
+    .logo-tagline {
+        font-size: 9px;
+    }
+    
+    /* Hero */
+    .hero {
+        padding: 100px 0 60px;
+        min-height: auto;
+    }
+    
+    .hero h1 {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .hero-description {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+    
+    .hero-stats {
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .hero-stat-num {
+        font-size: 20px;
+    }
+    
+    .hero-stat-label {
+        font-size: 11px;
+    }
+    
+    .hero-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .hero-buttons {
+        gap: 12px;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .btn-lg {
+        padding: 14px 24px;
+    }
+    
+    /* Sections */
+    .section {
+        padding: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .section-subtitle {
+        font-size: 14px;
+    }
+    
+    /* Cards */
+    .about-card,
+    .product-card,
+    .advantage-card,
+    .contact-card-main,
+    .contacts-form-wrapper {
+        padding: 20px 16px;
+    }
+    
+    /* Products Grid */
+    .products-grid {
+        gap: 16px;
+    }
+    
+    .product-card img {
+        height: 160px;
+    }
+    
+    /* Advantages */
+    .advantages-grid {
+        gap: 16px;
+    }
+    
+    /* Forms */
+    .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .form-input,
+    .form-textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-logo {
+        font-size: 18px;
+    }
+    
+    .footer-links {
+        gap: 12px;
+    }
+    
+    .footer-link {
+        font-size: 13px;
+    }
+    
+    /* Cookie Notice */
+    .cookie-notice {
+        padding: 12px 14px;
+    }
+    
+    .cookie-notice p {
+        font-size: 12px;
+    }
+    
+    .cookie-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    /* Scroll indicator */
+    .hero-scroll {
+        bottom: 10px;
+    }
+    
+    .hero-scroll a {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 320px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+    
+    .hero-subtitle {
+        font-size: 14px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .product-card img {
+        height: 140px;
+    }
+}
+
 /* ========================================
    Utility Classes
    ======================================== */
